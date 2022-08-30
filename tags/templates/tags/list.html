@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "paginate.html" %}
 
-{% block content %}
+{% block content2 %}
   <main class="recipe-grid">
     {% for tag in tag_list %}
       <div class="recipe-card">
@@ -24,4 +24,4 @@
       </div>
     {% endfor %}
   </main>
-{% endblock content %}
+{% endblock content2 %}

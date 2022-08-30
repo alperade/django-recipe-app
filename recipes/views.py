@@ -6,7 +6,6 @@ from django.views.generic.list import ListView
 
 from recipes.forms import RatingForm
 
-from recipes.forms import RecipeForm
 from recipes.models import Recipe
 
 
