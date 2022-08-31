@@ -5,11 +5,13 @@ from recipes.views import (
     RecipeDeleteView,
     RecipeUpdateView,
     log_rating,
+    recipes_by_users,
     RecipeDetailView,
     RecipeListView,
 )
 
 urlpatterns = [
+    path("recipes_by_users/", recipes_by_users, name="recipes_by_users"),
     path("", RecipeListView.as_view(), name="recipes_list"),
     path("<int:pk>/", RecipeDetailView.as_view(), name="recipe_detail"),
     path("<int:pk>/delete/", RecipeDeleteView.as_view(), name="recipe_delete"),

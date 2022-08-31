@@ -1,0 +1,27 @@
+{% extends "paginate.html" %}
+
+{% block content2 %}
+  <h2>
+  Would you like to
+  <a href="{% url 'meal_plan_create' %}">create</a>
+  a meal plan?
+  </h2>
+  <main class="recipe-grid">
+    {% for meal_plan in mealplans %}
+      <div class="recipe-card">
+        <h2 class="recipe-card-title">
+          <a href="{% url 'meal_plan_detail' meal_plan.pk %}">{{ meal_plan.name }}</a>
+        </h2>
+        {% for recipe in meal_plan.recipes.all %}
+          <p>
+            <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
+          </p>
+        {% endfor %}
+      </div>
+    {% empty %}
+      <div>
+        <h1>No meal plans, yet</h1>
+      </div>
+    {% endfor %}
+  </main>
+{% endblock content2 %}

@@ -4,6 +4,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 
 from recipes.forms import RatingForm
@@ -22,6 +23,15 @@ def log_rating(request, recipe_id):
             except Recipe.DoesNotExist:
                 return redirect("recipes_list")
         return redirect("recipe_detail", pk=recipe_id)
+
+
+from django.shortcuts import render
+
+UserList = User.objects.all()
+
+
+def recipes_by_users(request):
+    return UserList, render(request, "recipes/recipes_by_users.html")
 
 
 class RecipeListView(ListView):

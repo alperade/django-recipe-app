@@ -1,0 +1,25 @@
+from django.urls import path
+
+from meal_plans.views import (
+    MealPlanCreateView,
+    MealPlanDeleteView,
+    MealPlanUpdateView,
+    MealPlanListView,
+    MealPlanDetailView,
+)
+
+urlpatterns = [
+    path("", MealPlanListView.as_view(), name="meal_plans_list"),
+    path(
+        "<int:pk>/delete/",
+        MealPlanDeleteView.as_view(),
+        name="meal_plan_delete",
+    ),
+    path("create/", MealPlanCreateView.as_view(), name="meal_plan_create"),
+    path(
+        "<int:pk>/edit/",
+        MealPlanUpdateView.as_view(),
+        name="meal_plan_edit",
+    ),
+    path("<int:pk>/", MealPlanDetailView.as_view(), name="meal_plan_detail"),
+]
