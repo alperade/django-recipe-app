@@ -10,11 +10,11 @@
     <h1>{{ meal_plan.name }}</h1>
     <h2>by: {{ meal_plan.owner | default_if_none:"Unknown" }}</h2>
     <p>
-      Created on {{ meal_plan.date }} |
+      Created on {{ meal_plan.date }}
     </p>
     <p>Tags: {% for tag in recipe.tags.all %}{{ tag.word }} {% endfor %}</p>
     {{ recipe.description | markdownify }}
-    <h2>Ingredients</h2>
+    <h2>Recipes</h2>
     <table>
       <thead>
         <tr>

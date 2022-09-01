@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="recipe-grid">
+    {% for shopping_item in shopping_items %}
+      <div class="recipe-card">
+        <h2 class="recipe-card-title">
+          <li>{{ shopping_item.food_item }}</li>
+        </h2>
+      </div>
+    {% endfor %}
+    <form method="POST" action="{% url 'shopping_item_delete' %}">
+      {% csrf_token %}
+       <button>empty shopping list</button>
+    </form>
+  </main>
+{% endblock content %}

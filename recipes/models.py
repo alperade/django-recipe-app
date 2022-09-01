@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.conf import settings
 
+
 USER_MODEL = settings.AUTH_USER_MODEL
 
 # Create your models here.
@@ -79,4 +80,13 @@ class Rating(models.Model):
         "Recipe",
         related_name="ratings",
         on_delete=models.CASCADE,
+    )
+
+
+class ShoppingItem(models.Model):
+    user = models.ForeignKey(
+        USER_MODEL, related_name=("shopping_items"), on_delete=models.CASCADE
+    )
+    food_item = models.ForeignKey(
+        "FoodItem", related_name=("shopping_items"), on_delete=models.PROTECT
     )
