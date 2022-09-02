@@ -10,6 +10,7 @@ class RecipeForm(forms.ModelForm):
             "name",
             "author",
             "description",
+            "serving",
             "image",
         ]
 

@@ -18,6 +18,7 @@ class Recipe(models.Model):
     image = models.URLField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    serving = models.PositiveSmallIntegerField(null=True)
 
     def __str__(self):
         return self.name + " by " + str(self.author)

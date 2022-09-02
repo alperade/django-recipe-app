@@ -10,7 +10,7 @@ from django.db import IntegrityError
 
 from recipes.forms import RatingForm
 
-from recipes.models import Recipe, ShoppingItem, Ingredient, FoodItem
+from recipes.models import Recipe, ShoppingItem, Ingredient
 from django.contrib.auth.models import User
 
 
@@ -44,14 +44,14 @@ class RecipeDetailView(DetailView):
         for item in self.request.user.shopping_items.all():
             foods.append(item.food_item)
         context["food_in_shopping_list"] = foods
-        # context["cont"]
+        context["serving"] = self.request.GET.get("serving")
         return context
 
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
     model = Recipe
     template_name = "recipes/new.html"
-    fields = ["name", "description", "image"]
+    fields = ["name", "description", "serving", "image"]
     success_url = reverse_lazy("recipes_list")
 
     def form_valid(self, form):
@@ -62,7 +62,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
 class RecipeUpdateView(LoginRequiredMixin, UpdateView):
     model = Recipe
     template_name = "recipes/edit.html"
-    fields = ["name", "author", "description", "image"]
+    fields = ["name", "author", "description", "serving", "image"]
     success_url = reverse_lazy("recipes_list")
 
 
