@@ -11,7 +11,7 @@ from django.db import IntegrityError
 from recipes.forms import RatingForm
 
 from recipes.models import Recipe, ShoppingItem, Ingredient
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 def log_rating(request, recipe_id):
@@ -102,3 +102,24 @@ def shopping_item_delete(request):
     except IntegrityError:
         pass
     return redirect("shopping_items")
+
+
+def users_and_recipes(request):
+    User = get_user_model()
+    users = User.objects.all()
+    user_list = []
+    for author in users:
+        library = Recipe.objects.all()
+        user_list.append(author)
+    context = {
+        "user_list": user_list,
+        "library": library,
+    }
+    response = render(request, "recipes/users_and_recipes.html", context)
+    return response
+
+    # user = request.user
+    # shopping_items = ShoppingItem.objects.filter(user=user)
+    # context = {"shopping_items": shopping_items}
+    # response = render(request, "recipes/shopping_items.html", context)
+    # return response

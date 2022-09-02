@@ -10,6 +10,7 @@ from recipes.views import (
     shopping_items_list,
     shopping_item_create,
     shopping_item_delete,
+    users_and_recipes,
 )
 
 urlpatterns = [
@@ -30,4 +31,5 @@ urlpatterns = [
         shopping_item_delete,
         name="shopping_item_delete",
     ),
+    path("users_and_recipes/", users_and_recipes, name="users_and_recipes"),
 ]

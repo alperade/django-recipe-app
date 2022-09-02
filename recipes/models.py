@@ -19,6 +19,9 @@ class Recipe(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     serving = models.PositiveSmallIntegerField(null=True)
+    updated_by = models.ForeignKey(
+        USER_MODEL, related_name="recipe", on_delete=models.CASCADE, null=True
+    )
 
     def __str__(self):
         return self.name + " by " + str(self.author)
