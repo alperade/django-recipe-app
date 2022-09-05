@@ -107,19 +107,10 @@ def shopping_item_delete(request):
 def users_and_recipes(request):
     User = get_user_model()
     users = User.objects.all()
-    user_list = []
-    for author in users:
-        library = Recipe.objects.all()
-        user_list.append(author)
+    library = Recipe.objects.all()
     context = {
-        "user_list": user_list,
+        "user_list": users,
         "library": library,
     }
     response = render(request, "recipes/users_and_recipes.html", context)
     return response
-
-    # user = request.user
-    # shopping_items = ShoppingItem.objects.filter(user=user)
-    # context = {"shopping_items": shopping_items}
-    # response = render(request, "recipes/shopping_items.html", context)
-    # return response

@@ -1,20 +1,21 @@
 {% extends "base.html" %}
+{% load filter_by_user %}
+
 
 {% block content %}
+{{ recipe_list_per_user }}
 <main class="recipe-grid">
     {% for user in user_list %}
       <div class="recipe-card">
         <h2 class="recipe-card-title">
-          <li>{{ user }}</li>
+          <li>{{ user.username }}</li>
+          {% for item in library %}
+          <h2>
+            <a href="{% url 'recipe_detail' item.pk %}">{{ item|filter_by_user:user|default_if_none:"" }}</a>
+          </h2>
+        {% endfor %}
         </h2>
       </div>
     {% endfor %}
-  </main>
-
-  <h2>
-   {% for item in library %}
-    <h2>
-       {{ item.name }}
-    </h2>
-  {% endfor %}
+    </main>
 {% endblock content %}

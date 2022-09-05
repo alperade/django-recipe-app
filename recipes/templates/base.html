@@ -30,6 +30,9 @@
         <li>
           <a href="{% url 'shopping_item' %}">Shopping List</a>
         </li>
+        <li>
+          <a href="{% url 'users_and_recipes' %}">Recipes Listed per User</a>
+        </li>
         {% if user.is_authenticated %}
         <li>
           <a href="{% url 'logout' %}">Logout</a>
