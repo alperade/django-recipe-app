@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <main class="meal_plan-form">
+  <main class="recipe-form">
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
